@@ -32,7 +32,9 @@ function Angle(name) {
 				else return -1
 			}	
 		}
-		return this.clips[i-1];
+		if (i)	return this.clips[i-1]
+		else if (this.clips.length = 1 )return this.clips[0];
+		return -1;
 	}
 	
 	this.update = function (t) {
@@ -46,6 +48,7 @@ function Angle(name) {
 	}
 	
 	this.clipsFromString = function (s) {
+		if (s.length == 0) return;
 		var items = s.split(" ");
 		for (var i = 0; i < items.length; i = i + 2) {
 			this.push(new Clip(items[i],items[i+1]))
@@ -110,6 +113,7 @@ function read(p) {
 
 	// import JSON
 	var d1 = new Dict("import");
+	outlet(0,"dict","import",tmppath);
 	d1.import_json(tmppath);
 	outlet(1,"rm "+tmppath);	
 
@@ -127,6 +131,8 @@ function read(p) {
 		angles[i].clipsFromString(temp.get("gaps"))
 		angles[i].announce();
 	}
+	
+	angles[4].inspect();
 }
 
 function msg_float(f) {
