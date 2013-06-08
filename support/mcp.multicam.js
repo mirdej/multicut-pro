@@ -71,6 +71,8 @@ var xsltpath = ""
 var tmppath = "/var/tmp/mcptmp.json"
 var assets = new Dict("assets")
 var angles = new Array();
+var master_angle = 0;
+var stored_master = 0;
 
 function mypath(p) {
 	xsltpath = p+"support/mcp.transform.xsl";
@@ -132,12 +134,32 @@ function read(p) {
 		angles[i].announce();
 	}
 	
-	angles[4].inspect();
+	//angles[4].inspect();
+	setmaster();
 }
 
 function msg_float(f) {
+	angles[master_angle].update(f);
 	for (var i = 0; i < angles.length; i++) {
-		angles[i].update(f);
+		if (i != master_angle) { angles[i].update(f); }
+	}
+}
+
+function master(i) {
+	stored_master = i;
+}
+
+function setmaster() {
+	i = stored_master;
+	if (i < 0) i = 0;
+	if (i > (angles.length - 1) > (angles.length - 1)) ;
+	master_angle = i;
+		post("MASTER:",i,"\n")
+
+	for (var i = 0; i < angles.length; i++) {
+			outlet(0,i,"master",(i == master_angle));
+			outlet(0,i,"index",i );
+
 	}
 }
 
