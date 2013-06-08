@@ -71,6 +71,7 @@ var angles = new Array();
 
 function mypath(p) {
 	xsltpath = p+"support/mcp.transform.xsl";
+	tmppath = p+"mcptmp.json";
 }
 
 function filesValid(p) {
@@ -110,6 +111,8 @@ function read(p) {
 	// import JSON
 	var d1 = new Dict("import");
 	d1.import_json(tmppath);
+	outlet(1,"rm "+tmppath);	
+
 	assets = d1.get("assets");
 	var mc = new Dict();
 	mc = d1.get("multiclip");
