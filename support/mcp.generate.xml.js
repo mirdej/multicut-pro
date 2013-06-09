@@ -20,9 +20,11 @@ var attrs = {};
 
 attrs.sequenceformat  	= "r1"
 attrs.projectname	  	= "Test-Export"
-attrs.angles 			= ["a0","a1","a2","a3"];
+attrs.angles 			= ["a0","a1","a2","a3","a4"];
 attrs.multicam_ref 		= "r3000"
 attrs.multicam_name 	= "InclMaster"
+
+masterangle				= 4
 
 // ------------------------------------------------------------------------------------------
 // Read and parse file
@@ -115,7 +117,7 @@ function write(p) {
 		
 			case "cut":
 				if (start < 0) start = 0;
-				f.writestring(mc_clip_openTag(start,e.time-start,cam));
+				f.writestring(get_multiclipitem_xml(start,e.time-start,cam));
 				if (inline != '' ) {f.writeline(inline);}
 				f.writeline('</mc-clip>');
 				inline = "";
@@ -179,7 +181,7 @@ function get_clip_xml(time,name) {
     s +=				'</clip>';
     return s;
 }
-function mc_clip_openTag(time,duration,cam) {
+function get_multiclipitem_xml(time,duration,cam) {
 var s = '<mc-clip offset="'+time+'/1000s" ';
 s +=				'ref="'+attrs.multicam_ref+'" ';
 s +=				'name="'+attrs.multicam_name+'" ';
@@ -187,7 +189,10 @@ s +=				'duration="'+duration+'/1000s" ';
 s +=				'start="'+time+'/1000s">';
 s +=					'	<mc-source ';
 s +=							'angleID="'+attrs.angles[cam]+'" ';
-s +=								'srcEnable="all"/>';
+s +=								'srcEnable="video"/>';
+s +=					'	<mc-source ';
+s +=							'angleID="'+attrs.angles[masterangle]+'" ';
+s +=								'srcEnable="audio"/>';
 return s; 
 }
 
