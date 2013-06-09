@@ -14,7 +14,7 @@ var assets = new Array();
 var idCount = 0;
 var lanecounter;
 
-var verbose = 1;
+var verbose = 0;
 
 var attrs = {};
 
@@ -25,6 +25,19 @@ attrs.multicam_ref 		= "r3000"
 attrs.multicam_name 	= "InclMaster"
 
 masterangle				= 4
+
+declareattribute("verbose");
+// ------------------------------------------------------------------------------------------
+// Read a folder'o'logs
+// ------------------------------------------------------------------------------------------
+function folder(p) {
+	var f = new Folder (p);
+	  f.typelist = [ "TEXT" ]; 
+	 while (!f.end) {
+	 if (f.filename) {    read(f.pathname+f.filename); } // strange bug?
+    f.next();
+  }
+}
 
 // ------------------------------------------------------------------------------------------
 // Read and parse file
@@ -41,7 +54,7 @@ function read(p) {
 	}
 	
 	var s;
-//	log("Parsing file");
+	log("Parsing file");
 	while (f.position != f.eof) {
 		s = f.readline();
 		s = s.replace(/#.*/g,''); 			// remove comments
@@ -57,7 +70,7 @@ function read(p) {
 		}
 	}
 	f.close();
-//	log ("Sorting Events");
+	log ("Sorting Events");
 	
 	events.sort(function(a,b){return(a.time > b.time);});
 	
@@ -68,7 +81,7 @@ function read(p) {
 				events.push(new Event(parseInt(lastevent.time + 1) + " cut 0"))
 	}
 	
-	//inspect_events();
+	inspect_events();
 	
 	outlet(0,"read",1);
 }
@@ -197,6 +210,7 @@ return s;
 }
 
 function inspect_events() {
+	if (!verbose) return;
 	var i;
 	post (events.length, "Events:");post();
 	for (i = 0; i < events.length; i++) {

@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 55.0, 56.0, 1460.0, 1015.0 ],
+		"rect" : [ 56.0, 49.0, 1443.0, 753.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,7 +37,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1239.75, 662.5, 160.0, 20.0 ],
-					"presentation_rect" : [ 1239.75, 662.5, 0.0, 0.0 ],
 					"text" : "Elapsed Processing Time"
 				}
 
@@ -52,8 +51,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1102.25, 659.0, 129.5, 27.0 ],
-					"presentation_rect" : [ 1102.25, 659.0, 0.0, 0.0 ],
-					"text" : "00:03:04"
+					"text" : "00:36:54"
 				}
 
 			}
@@ -146,7 +144,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 2,
-					"outlettype" : [ "float", "int" ],
+					"outlettype" : [ "", "int" ],
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
@@ -175,7 +173,6 @@
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Arial",
@@ -213,7 +210,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
 									"patching_rect" : [ 77.5, 348.0, 34.0, 20.0 ],
-									"presentation_rect" : [ 77.3125, 348.0, 0.0, 0.0 ],
 									"text" : "/ 25."
 								}
 
@@ -241,7 +237,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 290.8125, 206.0, 83.0, 20.0 ],
-									"presentation_rect" : [ 289.3125, 207.0, 0.0, 0.0 ],
 									"text" : "s speedmode"
 								}
 
@@ -368,7 +363,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 616.5, 14.0, 79.0, 20.0 ],
-									"presentation_rect" : [ 603.8125, 50.0, 0.0, 0.0 ],
 									"text" : "r global_time"
 								}
 
@@ -534,8 +528,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 50.0, 40.0, 25.0, 25.0 ],
-									"presentation_rect" : [ 53.5, 41.0, 0.0, 0.0 ]
+									"patching_rect" : [ 50.0, 40.0, 25.0, 25.0 ]
 								}
 
 							}
@@ -1367,8 +1360,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 159.0, 516.0, 25.0, 25.0 ],
-									"presentation_rect" : [ 159.0, 515.0, 0.0, 0.0 ]
+									"patching_rect" : [ 159.0, 516.0, 25.0, 25.0 ]
 								}
 
 							}
@@ -1382,7 +1374,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
 									"patching_rect" : [ 115.0, 408.0, 47.0, 20.0 ],
-									"presentation_rect" : [ 117.0, 409.0, 0.0, 0.0 ],
 									"text" : "/ 1000."
 								}
 
@@ -1397,8 +1388,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 291.0, 471.0, 87.0, 20.0 ],
-									"presentation_rect" : [ 291.0, 471.0, 0.0, 0.0 ]
+									"patching_rect" : [ 291.0, 471.0, 87.0, 20.0 ]
 								}
 
 							}
@@ -1609,7 +1599,6 @@
 									}
 ,
 									"patching_rect" : [ 115.0, 436.0, 52.5, 20.0 ],
-									"presentation_rect" : [ 115.0, 436.0, 0.0, 0.0 ],
 									"saved_object_attributes" : 									{
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
@@ -2986,7 +2975,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1205.5, 225.5, 129.5, 27.0 ],
-					"text" : "00:20:27:02"
+					"text" : "00:31:21:20"
 				}
 
 			}
@@ -4680,7 +4669,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 433.0, 139.0, 33.0, 18.0 ],
-									"presentation_rect" : [ 433.0, 139.0, 0.0, 0.0 ],
 									"text" : "stop"
 								}
 
@@ -4732,13 +4720,13 @@
 									"fontname" : "Arial",
 									"fontsize" : 12.0,
 									"id" : "obj-16",
-									"linecount" : 20,
+									"linecount" : 6,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 316.0, 493.0, 50.0, 273.0 ],
-									"text" : "\"xsltproc -o /Users/tv/multicut-pro/mcptmp.json /Users/tv/multicut-pro/support/mcp.transform.xsl /Users/tv/Desktop/SchulTV-OE-3.fcpxml\""
+									"patching_rect" : [ 316.0, 493.0, 50.0, 85.0 ],
+									"text" : "\"rm /Users/tv/multicut-pro/editlog.txt\""
 								}
 
 							}
