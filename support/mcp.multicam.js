@@ -1,8 +1,12 @@
-outlets = 2;
+outlets = 3;
+
+function	parseFcpTime(t) {
+	var tt = eval ((""+t).replace('s',''));
+	return parseFloat(tt);
+}
 
 function Clip(offset,ref) {
-	this.offset = eval ((""+offset).replace('s',''));
-	this.offset = parseFloat(this.offset);
+	this.offset = parseFcpTime(offset)
 	this.path = assets.get(ref);
 	if (this.path === null) {this.path = "gap";}
 	this.path = this.path.replace(/%20/g," ");
@@ -67,16 +71,24 @@ function Angle(name) {
 }
 
 
+var logpath = ""
 var xsltpath = ""
 var tmppath = "/var/tmp/mcptmp.json"
 var assets = new Dict("assets")
 var angles = new Array();
 var master_angle = 0;
 var stored_master = 0;
+var duration = 0;
+var last_time = 0;
+var last_cam = 0;
+var log = "";
+var ref = "";
 
 function mypath(p) {
 	xsltpath = p+"support/mcp.transform.xsl";
 	tmppath = p+"mcptmp.json";
+	logpath = p+"log.xml";
+	
 }
 
 function filesValid(p) {
@@ -117,7 +129,7 @@ function read(p) {
 	var d1 = new Dict("import");
 	outlet(0,"dict","import",tmppath);
 	d1.import_json(tmppath);
-	outlet(1,"rm "+tmppath);	
+	//outlet(1,"rm "+tmppath);	
 
 	assets = d1.get("assets");
 	var mc = new Dict();
@@ -133,7 +145,10 @@ function read(p) {
 		angles[i].clipsFromString(temp.get("gaps"))
 		angles[i].announce();
 	}
-	
+	mc = d1.get("sequence");
+	duration = 	parseFcpTime(mc.get("duration"));
+	ref = mc.get("ref");
+	outlet(0,'duration',duration);
 	//angles[4].inspect();
 	setmaster();
 }
@@ -143,6 +158,29 @@ function msg_float(f) {
 	for (var i = 0; i < angles.length; i++) {
 		if (i != master_angle) { angles[i].update(f); }
 	}
+}
+
+function change(cam,time) {
+	
+	var fact = 5000;
+	
+	var 	s = 	'<mc-clip offset="'+parseInt(last_time*fact)+'/'+fact+'s" ref="'+ref+'" duration="'+parseInt((time - last_time) * fact)+'/'+fact+'s" start="'+parseInt(last_time*fact)+'/'+fact+'s" >';
+			s += 		'<mc-source angleID="'+angles[last_cam].id+'"  srcEnable="all"/>';
+			s += 	'</mc-clip>';
+
+	log += s;
+		
+	last_cam = cam;
+	last_time = time;
+
+}
+
+
+function getlog (){	
+
+	var logfile = new File(logpath,"write");
+	logfile.writestring(log);
+	logfile.close;
 }
 
 function master(i) {

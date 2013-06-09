@@ -26,13 +26,16 @@
 
 
 <xsl:template match="project">
+		<xsl:text>{</xsl:text>	
 					<xsl:apply-templates select="resources"/>		
-					
+					<xsl:apply-templates select="sequence"/>		
+			<xsl:text>			
+}</xsl:text>
 </xsl:template>
 
 	
 <xsl:template match="resources">
-		<xsl:text>{
+		<xsl:text>
 		"assets":	{</xsl:text>	
 
 <xsl:for-each select="asset">
@@ -84,14 +87,34 @@
 				</xsl:if>
 	
 	</xsl:for-each><!-- angle -->
-	</xsl:for-each><!-- multicam -->
 			<xsl:text>
 			}
-}</xsl:text>	
+</xsl:text>	</xsl:for-each><!-- multicam -->
+
+
+	
 	</xsl:for-each><!-- media -->
 
 </xsl:template>
 
+<xsl:template match="sequence">
+		<xsl:text>,
+		"sequence":	{</xsl:text>
+
+	<xsl:call-template name="encode">
+					<xsl:with-param name="name" select="'duration'"/>
+					<xsl:with-param name="input" select="@duration"/>
+				</xsl:call-template>		
+				<xsl:text>,</xsl:text>
+
+			<xsl:call-template name="encode">
+					<xsl:with-param name="name" select="'ref'"/>
+					<xsl:with-param name="input" select="spine/mc-clip/@ref"/>
+				</xsl:call-template>
+									<xsl:text>}</xsl:text>
+</xsl:template><!-- sequence -->
+	
+	
 <xsl:template name="encode">
 		<xsl:param name="name"/>
 		<xsl:param name="input"/>
