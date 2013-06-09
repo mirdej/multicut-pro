@@ -1,0 +1,66 @@
+ <format id="r12" name="FFVideoFormat720x576p25" frameDuration="100/2500s" width="720" height="576" paspH="59" paspV="54"/><format id="r10" name="FFVideoFormatDV720x576i50" frameDuration="200/5000s" fieldOrder="lower first" width="720" height="576" paspH="59" paspV="54"/>
+ <projectRef id="r2" name="SchulTV-Oeberngstringen" uid="9783B24E-7EDE-4D3D-AEB8-4490873F8672"/>
+ <media id="r3000" name="Homemade" projectRef="r2">
+                <multicam format="r1" tcStart="800/5000s" tcFormat="NDF" audioLayout="stereo">
+                    <mc-angle name="Aïcha" angleID="a0">
+                        <gap offset="0s" name="Pause" duration="351800/5000s" start="3600s"/>
+                        <clip offset="1759000/25000s" name="2013-05-31 14:00:36" duration="10011800/5000s" start="541000/25000s" tcFormat="NDF">
+                            <video offset="108200/5000s" ref="r4" name="2013-05-31 14_00_36 - v1" duration="10011800/5000s" start="108200/5000s">
+                                <audio lane="-1" offset="1038720/48000s" ref="r4" name="2013-05-31 14_00_36 - a1" duration="96113280/48000s" start="1038720/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                    </mc-angle>
+                    <mc-angle name="Djena" angleID="a1">
+                        <gap offset="0s" name="Pause" duration="434800/5000s" start="3600s"/>
+                        <clip offset="2174000/25000s" name="2013-05-31 14:01:50" duration="10364800/5000s" start="397000/25000s" tcFormat="NDF">
+                            <video offset="79400/5000s" ref="r5" name="2013-05-31 14_01_50 - v1" duration="10364800/5000s" start="79400/5000s">
+                                <audio lane="-1" offset="762240/48000s" ref="r5" name="2013-05-31 14_01_50 - a1" duration="99502080/48000s" start="762240/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                    </mc-angle>
+                    <mc-angle name="Hichino" angleID="a2">
+                        <gap offset="0s" name="Pause" duration="545600/5000s" start="3600s"/>
+                        <clip offset="2728000/25000s" name="2013-05-31 14:01:31" duration="10532200/5000s" start="2127000/25000s" tcFormat="NDF">
+                            <video offset="425400/5000s" ref="r6" name="2013-05-31 14_01_31 - v1" duration="10532200/5000s" start="425400/5000s">
+                                <audio lane="-1" offset="4083840/48000s" ref="r6" name="2013-05-31 14_01_31 - a1" duration="101109120/48000s" start="4083840/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                    </mc-angle>
+                    <mc-angle name="Leyla" angleID="a3">
+                        <gap offset="0s" name="Pause" duration="241800/5000s" start="3600s"/>
+                        <clip offset="1209000/25000s" name="2013-05-31 14:00:21" duration="6633000/5000s" start="277000/25000s" tcFormat="NDF">
+                            <video offset="55400/5000s" ref="r7" name="2013-05-31 14_00_21 - v1" duration="6633000/5000s" start="55400/5000s">
+                                <audio lane="-1" offset="531840/48000s" ref="r7" name="2013-05-31 14_00_21 - a1" duration="63676800/48000s" start="531840/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                        <gap offset="6874800/5000s" name="Pause" duration="29000/25000s" start="3600s"/>
+                        <clip offset="34403000/25000s" name="2013-05-31 14:22:29" duration="1293400/5000s" start="33471000/25000s" tcFormat="NDF">
+                            <video offset="6694200/5000s" ref="r8" name="2013-05-31 14_22_29 - v1" duration="1293400/5000s" start="6694200/5000s">
+                                <audio lane="-1" offset="64264320/48000s" ref="r8" name="2013-05-31 14_22_29 - a1" duration="12416640/48000s" start="64264320/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                        <gap offset="40870000/25000s" name="Pause" duration="1s" start="3600s"/>
+                        <clip offset="40895000/25000s" name="2013-05-31 14:26:48" duration="1705400/5000s" start="39963000/25000s" tcFormat="NDF">
+                            <video offset="7992600/5000s" ref="r9" name="2013-05-31 14_26_48 - v1" duration="1705400/5000s" start="7992600/5000s">
+                                <audio lane="-1" offset="76728960/48000s" ref="r9" name="2013-05-31 14_26_48 - a1" duration="16371840/48000s" start="76728960/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                    </mc-angle>
+                    <mc-angle name="Sony HDV-VCR" angleID="a4">
+                        <clip offset="0s" name="2013-05-31 13:57:01" duration="54364000/25000s" start="4000/25000s" format="r10" tcFormat="NDF">
+                            <video offset="800/5000s" ref="r11" name="2013-05-31 13_57_01 - v1" duration="10872800/5000s" start="800/5000s">
+                                <audio lane="-1" offset="7680/48000s" ref="r11" name="2013-05-31 13_57_01 - a1" duration="104378880/48000s" start="7680/48000s" role="dialogue" outCh="L, R"/>
+                            </video>
+                        </clip>
+                    </mc-angle>
+                </multicam>
+            </media>
+            <asset id="r4" name="2013-05-31 14_00_36" uid="9A111645E6515A973F5A2EF72E8C6D8B" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_00_36%20(id).mov" start="541000/25000s" duration="50059000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r5" name="2013-05-31 14_01_50" uid="6E358690B22A7F3D822243E14A14C840" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_01_50%20(id).mov" start="397000/25000s" duration="51824000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r6" name="2013-05-31 14_01_31" uid="11F9EDFAA0450D63241CDDBAB3752EA5" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_01_31%20(id).mov" start="2127000/25000s" duration="52661000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r7" name="2013-05-31 14_00_21" uid="5E57008965FF7F23FF830082FD1CAEFD" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_00_21%20(id).mov" start="277000/25000s" duration="33165000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r8" name="2013-05-31 14_22_29" uid="AFD53278F8D5BDFF63EA7A6768FB8838" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_22_29%20(id).mov" start="33471000/25000s" duration="6467000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r9" name="2013-05-31 14_26_48" uid="FF480026C41BB8EECF8FF7BAC409F226" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2014_26_48%20(id).mov" start="39963000/25000s" duration="8527000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <asset id="r11" name="2013-05-31 13_57_01" uid="5A07B2D18665E908698DF2079B4A569C" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/2013-05-31%2013_57_01%20(id).mov" start="4000/25000s" duration="54364000/25000s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"></asset>
+            <effect id="r14" name="Überblenden" uid="FxPlug:4731E73A-8DAC-4113-9A30-AE85B1761265"/>
+            <effect id="r15" name="SchulTV-Namentitel" uid=".../Titles.localized/SchulTV/SchulTV-Namentitel/SchulTV-Namentitel.moti"/>

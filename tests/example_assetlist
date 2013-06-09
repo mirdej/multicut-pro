@@ -1,0 +1,11 @@
+# mcp assetlist
+# hand generated on 2013-06-09 by Michael Egger
+
+#
+
+transition default tr1000	<effect id="tr1000" name="Überblenden" uid="FxPlug:4731E73A-8DAC-4113-9A30-AE85B1761265"/>
+title default tr1000 <effect id="t19000" name="SchulTV-Namentitel" uid=".../Titles.localized/SchulTV/SchulTV-Namentitel/SchulTV-Namentitel.moti"/>
+clip Limmat <asset id="clip1000" name="Limmat" uid="6EAA6473BED3C4EA3E8B57AFCBB1DA86" projectRef="r2" src="file://localhost/Users/tv/Movies/Final%20Cut%20Events/SchulTV-Oeberngstringen/Original%20Media/Limmat.mov" start="0s" duration="368600/2500s" hasVideo="1" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000">
+
+
+

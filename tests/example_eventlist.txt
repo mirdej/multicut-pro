@@ -1,0 +1,27 @@
+mcp.eventlist
+
+# mcp eventlist
+# hand generated on 2013-06-09 by Michael Egger
+
+#
+# Conventions
+#	- file MUST start with mcp.eventlist
+# 	- empty lines are ok
+#	- comments start with # as the first character
+#	- all times are in ms
+#	- events are not necessarily in order
+
+	# format: time event params  
+
+1000 cut 2
+	20000 transition 3 500  
+5000 cut 0 									# an inline comment
+70000		title			"Hans Muster"	# tabs should be replaced with one space
+90000 clip "Limmat"
+95000		title			"Hans Mustermann"	# tabs should be replaced with one space
+10 clip "Jingle"
+#9 nix	#uncommented this should give a parsing error because not enough params
+#z z z 	#this as well
+
+0 start 1		# start and stop marker should show on wich cam we start and stop
+120000 stop 0
