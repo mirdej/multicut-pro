@@ -41,7 +41,7 @@
 <xsl:for-each select="asset">
 			<xsl:call-template name="encode">
 					<xsl:with-param name="name" select="@id"/>
-					<xsl:with-param name="input" select="substring-after(@src,'file://localhost')"/>
+					<xsl:with-param name="input" select="substring-after(@src,'file://')"/>
 				</xsl:call-template>
 				<xsl:if test="position() != last()">
 					<xsl:text>,</xsl:text>
