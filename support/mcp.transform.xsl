@@ -25,10 +25,10 @@
 	</json:search>
 
 
-<xsl:template match="project">
+<xsl:template match="fcpxml">
 		<xsl:text>{</xsl:text>	
 					<xsl:apply-templates select="resources"/>		
-					<xsl:apply-templates select="sequence"/>		
+					<xsl:apply-templates select="library/event/project/sequence"/>		
 			<xsl:text>			
 }</xsl:text>
 </xsl:template>
@@ -97,7 +97,7 @@
 
 </xsl:template>
 
-<xsl:template match="sequence">
+<xsl:template match="library/event/project/sequence">
 		<xsl:text>,
 		"sequence":	{</xsl:text>
 
