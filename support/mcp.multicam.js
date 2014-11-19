@@ -10,6 +10,7 @@ function Clip(offset,ref) {
 	this.path = assets.get(ref);
 	if (this.path === null) {this.path = "gap";}
 	this.path = this.path.replace(/%20/g," ");
+	this.path = this.path.replace(/%23/g,"#");
 	
 	this.post = function () {
 		post("clip: "+this.path,this.offset,"\n");

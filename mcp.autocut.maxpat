@@ -37,7 +37,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 64.25, 131.0, 139.0, 20.0 ],
-					"presentation_rect" : [ 67.0, 130.5, 0.0, 0.0 ],
 					"text" : "Load Final Cut XML File"
 				}
 
@@ -2697,7 +2696,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1209.0, 131.0, 129.5, 27.0 ],
-					"text" : "00:10:24:02"
+					"text" : "00:57:46:04"
 				}
 
 			}
@@ -2990,7 +2989,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1205.5, 225.5, 129.5, 27.0 ],
-					"text" : "00:31:21:20"
+					"text" : "00:08:09:19"
 				}
 
 			}
@@ -3032,7 +3031,7 @@
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
 					"patching_rect" : [ 593.0, 193.5, 378.0, 27.0 ],
-					"size" : 4224.080078
+					"size" : 3466.199951
 				}
 
 			}
@@ -4654,7 +4653,7 @@
 							"architecture" : "x86"
 						}
 ,
-						"rect" : [ 325.0, 355.0, 1005.0, 596.0 ],
+						"rect" : [ 325.0, 355.0, 1064.0, 795.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4673,7 +4672,6 @@
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Arial",
@@ -4735,13 +4733,12 @@
 									"fontname" : "Arial",
 									"fontsize" : 12.0,
 									"id" : "obj-16",
-									"linecount" : 24,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 316.0, 493.0, 50.0, 326.0 ],
-									"text" : "\"xsltproc -o /Users/tv/Documents/multicut-pro/mcptmp.json /Users/tv/Documents/multicut-pro/support/mcp.transform.xsl /Users/tv/Movies/Sendung1multiclip.fcpxml\""
+									"patching_rect" : [ 292.5, 595.0, 449.0, 18.0 ],
+									"text" : "\"rm /Users/tv/Documents/multicut-pro/editlog.txt\""
 								}
 
 							}
@@ -5834,7 +5831,7 @@
 					"outlettype" : [ "", "int", "", "" ],
 					"parameter_enable" : 0,
 					"patching_rect" : [ 44.25, 193.5, 495.0, 29.0 ],
-					"text" : "\"Macintosh HD:/Users/tv/Movies/Sendung1multiclip.fcpxml\""
+					"text" : "Scratch:/SendungVolketswil.fcpxml"
 				}
 
 			}
