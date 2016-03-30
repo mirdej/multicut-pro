@@ -26,7 +26,8 @@ var assets = new Array();
 var idCount = 0;
 var lanecounter;
 var d1;
-
+var lastStart, lastTime;
+var titleName,titleID,tsCount = 0;
 // ----------------------------------------------------------------------------------------
 //																parse time
 
@@ -124,6 +125,8 @@ function read(p) {
 	d1.import_json(jsonfile);
 
 	tcStart = parseFcpTime(d1.get("tcStart"));
+	titleName = d1.get("title_name");
+	titleID = d1.get("title_id");
 
 	assets = d1.get("assets");
 	var mc = new Dict();
@@ -278,13 +281,19 @@ function write() {
 }
 
 function get_title_xml(time,name) {
-return "";
-        var s =   '<title lane="'+(lanecounter++)+'" ';
-        s+= 					'offset="'+time+'/1000s" ref="r15" name="SchulTV-Namentitel" ';
-        s+=						'duration="1290240/153600s" start="3600s">';
-        s+=							'<text></text>';
-		s+=							'<text>'+name+'</text></title>';
-		return s;
+
+	time = lastStart + time - lastTime;
+	time /= 20.;
+	time = Math.floor(time);
+	time *= 20;
+	tsCount++;
+
+	var s =   '<title lane="'+(lanecounter++)+'" ';
+	s+= 					'offset="'+time+'/1000s" ref="'+titleID+'" name="'+titleName+': '+ name +'" ';
+	s+=						'duration="1290240/153600s" start="3600s">';
+	//s+=							'<text></text>';
+	s+=							'<text><text-style ref="ts'+tsCount+'">'+name+'</text-style></text> <text-style-def id="ts'+tsCount+'"> <text-style font="Lucida Grande" fontSize="115" fontColor="0.999999 0.999974 0.999991 1" bold="1" strokeColor="0 0 0 1" strokeWidth="8"/></text-style-def></title>';
+	return s;
 }
 function get_clip_xml(time,name) {
 
@@ -298,10 +307,15 @@ function get_clip_xml(time,name) {
 	}
 
 	if (theAsset === "") {error ("Cannot find asset "+name);return "";}
-	time = time+tcStart*1000;
+
+	time = lastStart + time - lastTime;
+
+
+	//time = time+tcStart*1000;
 	time /= 20.;
 	time = Math.floor(time);
 	time *= 20;
+
 	
     var s =   '<clip lane="'+(lanecounter++)+'" ';
     s +=				'offset="'+time+'/1000s" ';
@@ -318,6 +332,8 @@ function get_clip_xml(time,name) {
 
 function get_multiclipitem_xml(time,duration,cam) {
 var start = time + tcStart*1000;
+lastStart = start;
+lastTime = time;
 var s = '<mc-clip offset="'+time+'/1000s" ';
 s +=				'ref="'+multiclipref+'" ';
 s +=				'name="'+outname+'" ';

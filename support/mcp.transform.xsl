@@ -53,8 +53,16 @@
 	<xsl:value-of select="@tcStart"/>
 		</xsl:for-each>
 	</xsl:for-each>
-
-	<xsl:text>",
+		<xsl:text>",
+		"title_id":	"</xsl:text>
+		<xsl:for-each select="effect">
+	<xsl:value-of select="@id"/>
+	</xsl:for-each>
+		<xsl:text>",
+		"title_name":	"</xsl:text>
+		<xsl:for-each select="effect">
+	<xsl:value-of select="@name"/>
+	</xsl:for-each>	<xsl:text>",
 		"multiclip":	{</xsl:text>	
 	<xsl:for-each select="media">
 	<xsl:for-each select="multicam">
