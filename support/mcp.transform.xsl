@@ -39,10 +39,8 @@
 		"assets":	{</xsl:text>	
 
 <xsl:for-each select="asset">
-			<xsl:call-template name="encode">
-					<xsl:with-param name="name" select="@id"/>
-					<xsl:with-param name="input" select="substring-after(@src,'file://')"/>
-				</xsl:call-template>
+					<xsl:text>
+						"</xsl:text><xsl:value-of select="@id" /><xsl:text>":{"name":"</xsl:text><xsl:value-of select="@name"/><xsl:text>","path":"</xsl:text><xsl:value-of select="substring-after(@src,'file://')"/><xsl:text>","duration":"</xsl:text><xsl:value-of select="@duration"/><xsl:text>"}</xsl:text>
 				<xsl:if test="position() != last()">
 					<xsl:text>,</xsl:text>
 				</xsl:if>
