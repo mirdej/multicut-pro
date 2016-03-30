@@ -19,6 +19,7 @@ var last_time = 0;
 var last_cam = 0;
 var timediff = 0;
 var verbose = 1;
+var tcStart = 0;
 
 var events = new Array();
 var assets = new Array();
@@ -122,6 +123,8 @@ function read(p) {
 	outlet(0,"dict","import",jsonfile);
 	d1.import_json(jsonfile);
 
+	tcStart = parseFcpTime(d1.get("tcStart"));
+
 	assets = d1.get("assets");
 	var mc = new Dict();
 
@@ -137,8 +140,8 @@ function read(p) {
 		angles[i].id =keys[i];
 		angles[i].idx = i;
 		angles[i].clipsFromString(temp.get("clips"))
-	/*	angles[i].clipsFromString(temp.get("gaps"))
-		angles[i].announce();*/
+		angles[i].clipsFromString(temp.get("gaps"))
+		angles[i].announce();
 	}
 	
 
@@ -212,29 +215,16 @@ function write() {
 	outname = a.pop();
 	outname +="_MCP.fcpxml"
 	var f = new File(outpath+outname,"write");
-	
 	f.eof = 0;
 	
-	f.writeline('<?xml version="1.0" encoding="UTF-8" standalone="no"?>');
-	f.writeline('<!DOCTYPE fcpxml>');
-	f.writeline('');
-	f.writeline('<fcpxml version="1.2">');
-	f.writeline('	<project name="'+outname+'">');
-
-	f.writeline('		<resources>');
 	
-/*
-	for (var i = 0; i < assets.length; i++)	{
-		 f.writeline(assets[i].getxml());
-	 }
-*/
-
-	f.writeline('		</resources>');
-	
-	var	mc = d1.get("sequence");
-
-	f.writeline('		<sequence duration="'+mc.get("duration")+'s"  tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">');
-    f.writeline('			<spine>');
+	var s, inr;
+	var ff = new File (xmlfiles[0]) ;
+	while (ff.position != ff.eof){ 
+		var s = ff.readline();
+		f.writeline(s); 
+		if (s.indexOf("<spine>") > -1)  break;
+	}
     
     var e;
     var start = -1;
@@ -275,17 +265,20 @@ function write() {
 		
 
     }
-    
-    f.writeline('			</spine>');
-    f.writeline('		</sequence>');
-    f.writeline('	</project>');
+ 
+
+    f.writeline('					</spine>');
+    f.writeline('				</sequence>');
+    f.writeline('			</project>');
+    f.writeline('		</event>');
+    f.writeline('	</library>');
   	f.writeline('</fcpxml>');
 	f.close();
 
 }
 
 function get_title_xml(time,name) {
-
+return "";
         var s =   '<title lane="'+(lanecounter++)+'" ';
         s+= 					'offset="'+time+'/1000s" ref="r15" name="SchulTV-Namentitel" ';
         s+=						'duration="1290240/153600s" start="3600s">';
@@ -294,38 +287,43 @@ function get_title_xml(time,name) {
 		return s;
 }
 function get_clip_xml(time,name) {
-	
-	var theAsset;
-	for (var i = 0; i < assets.length; i++) {
-		if (assets[i].name == name) {theAsset = assets[i]; break;}
+
+	var theAsset = "";
+	var keys = assets.getkeys();
+
+				
+	for (var i = 0; i < keys.length; i++) {
+		temp = assets.get(keys[i]);
+		if (temp.get("name") == name) {theAsset = temp; break;}
 	}
 
-	
+	if (theAsset === "") {error ("Cannot find asset "+name);return "";}
 	
     var s =   '<clip lane="'+(lanecounter++)+'" ';
     s +=				'offset="'+time+'/1000s" ';
     s +=				'name="'+name+'" ';
-    s +=				'duration="'+theAsset.duration+'/1000s" ';
-    s +=				'start="'+theAsset.start+'/1000s" ';
+    s +=				'duration="'+theAsset.get("duration")+'/1000s" ';
+    s +=				'start="'+theAsset.get("start")+'/1000s" ';
     s +=				'tcFormat="NDF">';
-    s +=				'	<video offset="'+theAsset.start+'/1000s" ref="'+theAsset.id+'" duration="'+theAsset.duration+'/1000s">';
-    s +=				'	<audio lane="-1" offset="'+theAsset.start+'/1000s" ref="'+theAsset.id+'" duration="'+theAsset.duration+'/1000s" role="dialogue"/>';
+    s +=				'	<video offset="'+theAsset.get("start")+'" ref="'+theAsset.get("id")+'" duration="'+theAsset.get("duration")+'">';
+    s +=				'	<audio lane="-1" offset="'+theAsset.get("start")+'" ref="'+theAsset.get("id")+'" duration="'+theAsset.get("duration")+'" role="dialogue"/>';
     s +=				'</video>';
     s +=				'</clip>';
     return s;
 }
 
 function get_multiclipitem_xml(time,duration,cam) {
+var start = time + tcStart*1000;
 var s = '<mc-clip offset="'+time+'/1000s" ';
 s +=				'ref="'+multiclipref+'" ';
-s +=				'name="'+attrs.multicam_name+'" ';
+s +=				'name="'+outname+'" ';
 s +=				'duration="'+duration+'/1000s" ';
-s +=				'start="'+time+'/1000s">';
+s +=				'start="'+start+'/1000s">';
 s +=					'	<mc-source ';
-s +=							'angleID="'+attrs.angles[cam]+'" ';
+s +=							'angleID="'+angles[cam].id+'" ';
 s +=								'srcEnable="video"/>';
 s +=					'	<mc-source ';
-s +=							'angleID="'+attrs.angles[masterangle]+'" ';
+s +=							'angleID="'+angles[4].id+'" ';
 s +=								'srcEnable="audio"/>';
 return s; 
 }
@@ -375,7 +373,11 @@ function Event (s) {
 	if ((s.match(/ /g)||[]).length < 2) { error("Not enough arguments:",s); s = "-1 nop nop"}
 	s = s.split(" ");
 	
-	this.time = parseInt(s[0])/1000. + timediff;
+	this.time = parseInt(s[0]) + timediff;
+	this.time /= 20.;								// keep in 50fps edit boundaries
+	this.time = Math.floor(this.time);
+	this.time *= 20.;
+	
 	if (isNaN(this.time) ) { error("Coud not parse time:",s); this.time = -1;}
 	
 	this.type = s[1];
@@ -419,6 +421,7 @@ function Asset (name,path,duration,start) {
 //															clip object
 
 function Clip(offset,ref) {
+	if (ref == "gap") return;
 	this.offset = parseFcpTime(offset)
 	this.path = assets.get(ref).get("path");
 	if (this.path === null) {this.path = "gap";}

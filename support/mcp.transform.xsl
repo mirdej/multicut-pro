@@ -40,13 +40,21 @@
 
 <xsl:for-each select="asset">
 					<xsl:text>
-						"</xsl:text><xsl:value-of select="@id" /><xsl:text>":{"name":"</xsl:text><xsl:value-of select="@name"/><xsl:text>","path":"</xsl:text><xsl:value-of select="substring-after(@src,'file://')"/><xsl:text>","duration":"</xsl:text><xsl:value-of select="@duration"/><xsl:text>"}</xsl:text>
+						"</xsl:text><xsl:value-of select="@id" /><xsl:text>":{"name":"</xsl:text><xsl:value-of select="@name"/><xsl:text>","path":"</xsl:text><xsl:value-of select="substring-after(@src,'file://')"/><xsl:text>","path":"</xsl:text><xsl:value-of select="substring-after(@src,'file://')"/><xsl:text>","start":"</xsl:text><xsl:value-of select="@start"/><xsl:text>","duration":"</xsl:text><xsl:value-of select="@duration"/><xsl:text>"}</xsl:text>
 				<xsl:if test="position() != last()">
 					<xsl:text>,</xsl:text>
 				</xsl:if>
 
 	</xsl:for-each>
 		<xsl:text>},
+		"tcStart":	"</xsl:text>
+		<xsl:for-each select="media">
+	<xsl:for-each select="multicam">
+	<xsl:value-of select="@tcStart"/>
+		</xsl:for-each>
+	</xsl:for-each>
+
+	<xsl:text>",
 		"multiclip":	{</xsl:text>	
 	<xsl:for-each select="media">
 	<xsl:for-each select="multicam">
