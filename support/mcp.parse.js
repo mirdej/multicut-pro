@@ -290,23 +290,27 @@ function get_clip_xml(time,name) {
 
 	var theAsset = "";
 	var keys = assets.getkeys();
-
+	var theID;
 				
 	for (var i = 0; i < keys.length; i++) {
 		temp = assets.get(keys[i]);
-		if (temp.get("name") == name) {theAsset = temp; break;}
+		if (temp.get("name") == name) {theAsset = temp; theID = keys[i]; break;}
 	}
 
 	if (theAsset === "") {error ("Cannot find asset "+name);return "";}
+	time = time+tcStart*1000;
+	time /= 20.;
+	time = Math.floor(time);
+	time *= 20;
 	
     var s =   '<clip lane="'+(lanecounter++)+'" ';
     s +=				'offset="'+time+'/1000s" ';
     s +=				'name="'+name+'" ';
-    s +=				'duration="'+theAsset.get("duration")+'/1000s" ';
-    s +=				'start="'+theAsset.get("start")+'/1000s" ';
+    s +=				'duration="'+theAsset.get("duration")+'" ';
+    s +=				'start="'+theAsset.get("start")+'" ';
     s +=				'tcFormat="NDF">';
-    s +=				'	<video offset="'+theAsset.get("start")+'" ref="'+theAsset.get("id")+'" duration="'+theAsset.get("duration")+'">';
-    s +=				'	<audio lane="-1" offset="'+theAsset.get("start")+'" ref="'+theAsset.get("id")+'" duration="'+theAsset.get("duration")+'" role="dialogue"/>';
+    s +=				'	<video offset="'+theAsset.get("start")+'" ref="'+theID+'" duration="'+theAsset.get("duration")+'">';
+    s +=				'	<audio lane="-1" offset="'+theAsset.get("start")+'" ref="'+theID+'" duration="'+theAsset.get("duration")+'" role="dialogue"/>';
     s +=				'</video>';
     s +=				'</clip>';
     return s;
