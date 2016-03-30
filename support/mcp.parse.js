@@ -216,8 +216,8 @@ function write() {
 	var a = outpath.split('/');
 	outname = a.pop();
 	outname = a.pop();
-	outname +="_MCP.fcpxml"
-	var f = new File(outpath+outname,"write");
+	outname +="_MCP"
+	var f = new File(outpath+outname+".fcpxml","write");
 	f.eof = 0;
 	
 	
@@ -225,6 +225,12 @@ function write() {
 	var ff = new File (xmlfiles[0]) ;
 	while (ff.position != ff.eof){ 
 		var s = ff.readline();
+		if (s.indexOf( "<project name=") > -1) {
+			 s = s.replace(/<project name=\"(.*)\" uid/,'<project name="'+outname+'" uid');
+		}
+		if (s.indexOf( "<event name=") > -1) {
+			 s= s.replace(/<event name=\"(.*)\" uid/,'<event name="'+outname+'" uid');
+		}
 		f.writeline(s); 
 		if (s.indexOf("<spine>") > -1)  break;
 	}
